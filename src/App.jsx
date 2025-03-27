@@ -30,12 +30,12 @@ const App = () => {
 
   const handleGuessSubmit = (guess) => {
     if (guess.length !== 5) {
-      alert("Your guess must be 5 letters long!");
+      alert("Your guess must be 5 letters long. Please try again!");
       return;
     }
 
     if (!fiveLetterWords.includes(guess.toLowerCase())) {
-      alert("The guessed word is not a valid word!");
+      alert("Sorry, that's not valid. Please try again.");
       return;
     }
 
@@ -44,7 +44,7 @@ const App = () => {
         (g) => g.map((letterObj) => letterObj.letter).join("") === guess
       )
     ) {
-      alert("You've already guessed that word!");
+      alert("You've tried that word already!");
       return;
     }
     const checkResult = wordle.checkWord(guess);
@@ -68,7 +68,7 @@ const App = () => {
   };
 
   return (
-    <div className="app min-h-screen flex flex-col items-center justify-start bg-gray-100 p-4 pt-8 " style={{ fontFamily: "'Geologica', sans-serif" }}>
+    <div className="app min-h-screen flex flex-col items-center justify-start p-4 pt-8 " style={{ fontFamily: "'Geologica', sans-serif" }}>
       <h1 className="text-3xl font-bold">
         <span className="text-green-500">W</span>
         <span className="text-green-500">O</span>
@@ -77,9 +77,9 @@ const App = () => {
         <span className="text-yellow-500">L</span>
         <span className="text-gray-500">E</span>
       </h1>{" "}
-      <a href="https://github.com/rvrutan" className="hover:text-blue-500 mb-4">
-        by Roni
-      </a>
+      <h3 className="hover:text-blue-500 mb-4 text-xl">
+        Get 6 chances to guess a 5-letter word      
+      </h3>
       <div className="mb-12">
         <WordGrid guesses={guesses} currentGuess={currentGuess} />
       </div>

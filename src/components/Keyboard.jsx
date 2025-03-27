@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createGrid, getColorClass } from "../tools/getColor";
 
 function Keyboard({ handleKeyPress, guesses, currentGuess }) {
@@ -19,6 +20,20 @@ function Keyboard({ handleKeyPress, guesses, currentGuess }) {
     }
     return "";
   }
+  useEffect(() => {
+    function handleKeyDown(event) {
+      const key = event.key.toLowerCase();
+      if (rows.flat().includes(key.toUpperCase()) || key === "enter" || key === "backspace") {
+        handleKeyPress(key === "enter" ? "ENTER" : key === "backspace" ? "⌫" : key);
+      }
+    }
+  
+    window.addEventListener("keydown", handleKeyDown);
+  
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleKeyPress, rows]);
 
   return (
     <div className="keyboard flex flex-col items-center space-y-3">

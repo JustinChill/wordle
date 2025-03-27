@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createGrid, getColorClass } from "../tools/getColor";
 
+
 function WordleGrid({ guesses, currentGuess }) {
   const grid = createGrid(guesses, currentGuess);
   const [flippedCells, setFlippedCells] = useState([]);
@@ -24,6 +25,7 @@ function WordleGrid({ guesses, currentGuess }) {
     }
   }, [guesses]);
 
+  // Build the Wordle grid
   return (
     <div className="grid space-y-2">
       {grid.map((row, rowIndex) => (
