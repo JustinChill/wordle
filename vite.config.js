@@ -7,8 +7,5 @@ export default defineConfig({
   plugins: [tailwindcss(), react()],
   test: {
     globals: true
-  },
-  build: {
-    outDir: 'dist-dev' // Specify the output directory for the build files
   }
 });
